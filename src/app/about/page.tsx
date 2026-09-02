@@ -128,7 +128,7 @@ export default function AboutPage() {
           </div>
 
           <div className="mx-auto grid max-w-[1200px] gap-[30px] md:grid-cols-2">
-            <div className="flex min-h-[280px] flex-col items-center justify-center rounded-[18px] bg-white p-[30px] text-center shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition hover:-translate-y-1.5">
+            <div className="flex min-h-[280px] flex-col items-center justify-center rounded-[18px] bg-white p-[30px] text-center shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition hover:-translate-y-1.5 cursor-not-allowed">
               <div className="mb-3 h-[200px] w-[200px] overflow-hidden rounded-full bg-gray-300">
                 <img
                   src="/assets/stephen-dexter.png"
@@ -139,10 +139,10 @@ export default function AboutPage() {
 
               <h3 className="text-xl font-bold">Stephen Dexter</h3>
               <p className="text-gray-700">Elder</p>
-              <p className="text-sm text-gray-500">📞 (423) 429-6523</p>
+              <p className="text-sm text-gray-500">📧 drstephendexter@gmail.com</p>
             </div>
 
-            <div className="flex min-h-[280px] flex-col items-center justify-center rounded-[18px] bg-white p-[30px] text-center shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition hover:-translate-y-1.5">
+            <div className="flex min-h-[280px] flex-col items-center justify-center rounded-[18px] bg-white p-[30px] text-center shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition hover:-translate-y-1.5 cursor-not-allowed">
               <div className="mb-3 h-[200px] w-[200px] overflow-hidden rounded-full bg-gray-300">
                 <img
                   src="/assets/melissa-dexter.png"
@@ -155,8 +155,7 @@ export default function AboutPage() {
               <p className="text-gray-700">Elder</p>
               <p className="text-sm text-gray-500">📞 (423) 429-6524</p>
             </div>
-
-            <div className="flex min-h-[280px] flex-col items-center justify-center rounded-[18px] bg-white p-[30px] text-center shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition hover:-translate-y-1.5 md:col-span-2">
+            <a href="https://thomas-portfolio-next.vercel.app/" target="_blank" rel="noopener noreferrer" className="flex min-h-[280px] flex-col items-center justify-center rounded-[18px] bg-white p-[30px] text-center shadow-[0_15px_35px_rgba(0,0,0,0.08)] transition hover:-translate-y-1.5 md:col-span-2">
               <div className="mb-3 h-[200px] w-[200px] overflow-hidden rounded-full bg-gray-300">
                 <img
                   src="/assets/thomas-stein.png"
@@ -168,7 +167,9 @@ export default function AboutPage() {
               <h3 className="text-xl font-bold">Thomas Stein</h3>
               <p className="text-gray-700">Website Manager</p>
               <p className="text-sm text-gray-500">📞 (423) 707-5268</p>
-            </div>
+                <p className="text-sm text-gray-500">📧 thomas7stein12@gmail.com</p>
+              <p className="text-sm text-gray-600">I can work for you too! Just click on me!</p>
+            </a>
           </div>
         </div>
       </section>

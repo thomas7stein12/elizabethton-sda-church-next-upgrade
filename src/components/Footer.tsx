@@ -51,9 +51,23 @@ export default function Footer({ onContact }: FooterProps) {
           </button>
         </div>
 
-        <p className="mx-auto mt-8 max-w-[600px] text-sm text-white/40">
+        <p className="mx-auto my-8 max-w-[600px] text-sm text-white/40">
           © 2026 Elizabethton SDA Church. All Rights Reserved.
         </p>
+        <p className="text-md text-white/80">
+          Like this website?<br>
+          </br>Need to upgrade the online presence of your organization or business?<br>
+          </br>Visit my website by clicking the link below!
+        </p>
+        <div className="flex justify-center">
+        <a 
+        href="https://thomas-portfolio-next.vercel.app/" 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        className="flex relative mt-8 rounded-full bg-red-600 px-[60px] py-[14px] text-white transition hover:-translate-y-1">
+            Thomas's Portfolio
+        </a>
+        </div>
       </div>
     </footer>
   );

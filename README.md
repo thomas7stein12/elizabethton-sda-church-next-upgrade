@@ -1,37 +1,293 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Elizabethton SDA Church Website
 
-## Getting Started
+**Live Site:** [elizabethton-sda-church-next-upgrad.vercel.app](https://elizabethton-sda-church-next-upgrad.vercel.app/)
 
-First, run the development server:
+A modern, responsive church website built with **Next.js, React, TypeScript, Tailwind CSS, and Supabase**.
+
+This project was developed for **Elizabethton SDA Church** to replace an older static website with a more modern, maintainable platform that provides church information, upcoming events, photo galleries, contact information, and an authenticated administrative area for managing content.
+
+Rather than simply recreating the original site, I rebuilt the application as a full-stack Next.js project with a backend powered by Supabase.
+
+---
+
+## ✨ Features
+
+* 📱 **Responsive Design** for desktop, tablet, and mobile
+* 📅 **Dynamic Event Calendar** powered by Supabase
+* 🔐 **Admin Authentication** for protected administrative functionality
+* 🖼️ **Image Gallery** backed by Supabase Storage
+* 🔍 **Interactive Image Viewer** for browsing church photos
+* 🏠 **Church Information & About Pages**
+* 📍 **Visit Us / Contact Information**
+* 🎨 **Custom Church Branding** based on the organization's existing visual identity
+* ⚡ **Next.js App Router** for modern application architecture
+* ☁️ **Vercel Deployment** for production hosting
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* **Next.js** — React framework and application architecture
+* **React** — Component-based UI
+* **TypeScript** — Type-safe development
+* **Tailwind CSS** — Responsive styling and reusable UI patterns
+* **React Icons** — UI icons
+
+### Backend & Data
+
+* **Supabase** — Backend services and database
+* **PostgreSQL** — Relational event and application data
+* **Supabase Auth** — Administrative authentication
+* **Supabase Storage** — Church gallery image storage
+
+### Development & Deployment
+
+* **Git / GitHub** — Version control
+* **VS Code** — Development environment
+* **NPM** — Package management
+* **Vercel** — Production deployment
+
+---
+
+## 🏗️ Application Architecture
+
+The project uses Next.js for the frontend and application layer while Supabase provides the backend services.
+
+```text
+                    ┌─────────────────────┐
+                    │       Visitor       │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │      Next.js UI     │
+                    │ React + Tailwind CSS │
+                    └──────────┬──────────┘
+                               │
+                ┌──────────────┼──────────────┐
+                │              │              │
+                ▼              ▼              ▼
+          ┌──────────┐   ┌──────────┐   ┌──────────┐
+          │ Supabase │   │ Supabase │   │ Supabase │
+          │ Database │   │   Auth   │   │ Storage  │
+          └──────────┘   └──────────┘   └──────────┘
+               │              │              │
+               ▼              ▼              ▼
+            Events        Admin Access    Gallery
+```
+
+This architecture allows church staff to manage dynamic content without requiring changes to the site's source code.
+
+---
+
+## 📅 Dynamic Event Management
+
+One of the main full-stack features is the church's event system.
+
+Events are stored in **Supabase PostgreSQL** instead of being hard-coded into the frontend.
+
+The application supports church activities such as:
+
+* Worship services
+* Meetings
+* Prayer events
+* Fellowship
+* Outreach events
+
+The project also supports recurring events so repeating church activities can be represented without manually creating every individual occurrence.
+
+This makes the calendar easier to maintain as the church's schedule changes.
+
+---
+
+## 🔐 Administrative Dashboard
+
+The website includes an authenticated administrative area for managing protected content.
+
+Administrative functionality is separated from the public-facing website using **Supabase Authentication**.
+
+This allows authorized users to manage site content while keeping administrative functionality inaccessible to normal visitors.
+
+---
+
+## 🖼️ Gallery & Image Storage
+
+The church gallery uses **Supabase Storage** rather than storing image files directly in the application.
+
+The gallery includes:
+
+* Cloud-based image storage
+* Dynamic image loading
+* Responsive gallery layouts
+* Interactive image viewing
+* Administrative control over uploaded images
+
+Using Supabase Storage keeps the application separate from the actual image files and provides a scalable way to manage the church's growing collection of photos.
+
+---
+
+## 🎨 Design & User Experience
+
+The website was rebuilt around the church's existing branding and visual identity.
+
+The design uses:
+
+* Deep green
+* Gold
+* Neutral gray tones
+* Responsive layouts
+* Clear navigation
+* Accessible typography
+* Mobile-friendly interactions
+
+The goal was to maintain the identity of the existing organization while giving the site a cleaner and more modern user experience.
+
+---
+
+## 📁 Project Structure
+
+```text
+src/
+├── app/
+│   ├── about/
+│   ├── calendar/
+│   ├── contact/
+│   ├── pictures/
+│   ├── visit-us/
+│   ├── admin/
+│   ├── layout.tsx
+│   ├── page.tsx
+│   └── globals.css
+│
+├── components/
+│   ├── Navbar
+│   ├── Footer
+│   ├── Event components
+│   ├── Gallery components
+│   ├── Modal components
+│   └── ...
+│
+├── lib/
+│   ├── Supabase configuration
+│   └── application helpers
+│
+└── ...
+```
+
+> Folder names may change as the project evolves, but the application is organized around reusable UI components, route-based pages, backend utilities, and centralized data access.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/thomas7stein12/elizabethton-sda-church-next-upgrade.git
+cd elizabethton-sda-church-next-upgrade
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure environment variables
+
+Create a `.env.local` file and add the required Supabase configuration:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### 4. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 5. Create a production build
 
-## Learn More
+```bash
+npm run build
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🗄️ Supabase Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The application requires a Supabase project with the appropriate database, authentication, and storage configuration.
 
-## Deploy on Vercel
+The backend is used for:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+**Database**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# elizabethton-sda-church-next-upgrade
+* Church events
+* Recurring event information
+* Other dynamic content
+
+**Authentication**
+
+* Administrative login
+* Protected admin functionality
+
+**Storage**
+
+* Church gallery images
+
+Environment variables should be kept in `.env.local` during local development and configured through the deployment platform for production.
+
+---
+
+## 🎯 Project Goals
+
+The primary goal of this project was to transform a basic static church website into a **maintainable full-stack application**.
+
+The project provided practical experience with:
+
+* Next.js App Router
+* React component architecture
+* TypeScript
+* Tailwind CSS
+* PostgreSQL
+* Supabase
+* Authentication
+* Cloud storage
+* CRUD-style data management
+* Responsive design
+* Production deployment
+* Building software for a real organization
+
+---
+
+## 🌐 Live Website
+
+**Elizabethton SDA Church**
+https://elizabethton-sda-church-next-upgrad.vercel.app/
+
+---
+
+## 👨‍💻 Developer
+
+**Thomas Stein**
+
+Full-Stack Web Developer
+
+* 🌐 [Portfolio](https://thomas-portfolio-next.vercel.app/)
+* 💻 [GitHub](https://github.com/thomas7stein12)
+* 💼 [LinkedIn](https://www.linkedin.com/in/thomas-stein-a0b9b4437/)
+* ✉️ [Email](mailto:thomas7stein12@gmail.com)
+
+---
+
+### Built with Next.js, React, TypeScript, Tailwind CSS, Supabase, and PostgreSQL.

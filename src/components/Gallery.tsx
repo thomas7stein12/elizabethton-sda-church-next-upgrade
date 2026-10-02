@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
 interface GalleryPhoto {
@@ -15,28 +15,34 @@ export default function Gallery() {
   const [loading, setLoading] = useState(true);
   const [selectedPhoto, setSelectedPhoto] = useState<GalleryPhoto | null>(null);
 
-  const loadGallery = useCallback(async () => {
-    setLoading(true);
-
-    const { data, error } = await supabase
-      .from("gallery")
-      .select("*")
-      .order("created_at", { ascending: false });
-
-    if (error) {
-      console.error("Gallery loading error:", error);
-      setPhotos([]);
-      setLoading(false);
-      return;
-    }
-
-    setPhotos((data ?? []) as GalleryPhoto[]);
-    setLoading(false);
-  }, []);
-
   useEffect(() => {
+    let ignore = false;
+
+    const loadGallery = async () => {
+      const { data, error } = await supabase
+        .from("gallery")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (ignore) return;
+
+      if (error) {
+        console.error("Gallery loading error:", error);
+        setPhotos([]);
+        setLoading(false);
+        return;
+      }
+
+      setPhotos((data ?? []) as GalleryPhoto[]);
+      setLoading(false);
+    };
+
     void loadGallery();
-  }, [loadGallery]);
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   useEffect(() => {
     if (!selectedPhoto) {

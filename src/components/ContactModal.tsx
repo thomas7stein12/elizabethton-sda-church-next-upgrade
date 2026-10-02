@@ -64,14 +64,14 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
         <div className="space-y-2">
           <a
-            href="mailto:drstephendexter@gmail.com"
+            href="mailto:elizabethtonsdachurch@gmail.com"
             className="block rounded-xl bg-[#f5f5f5] p-3 text-gray-900 transition hover:bg-[#17593f] hover:text-white"
           >
             📧 Email Us
           </a>
 
           <a
-            href="tel:+14234296524"
+            href="tel:+14234408207"
             className="block rounded-xl bg-[#f5f5f5] p-3 text-gray-900 transition hover:bg-[#17593f] hover:text-white"
           >
             📞 Call Us

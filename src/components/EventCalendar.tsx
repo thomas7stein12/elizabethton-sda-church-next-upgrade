@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
 type EventType = "worship" | "meeting" | "prayer" | "fellowship" | "outreach";
@@ -88,28 +88,6 @@ function getEventsForMonth(
   return monthEvents;
 }
 
-function getNextEvent(
-  events: Record<string, CalendarEvent[]>,
-): CalendarEvent | null {
-  const allEvents = Object.values(events).flat();
-
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-
-  return (
-    allEvents
-      .filter((event) => {
-        const date = getLocalDate(event.dateString);
-        return date >= today;
-      })
-      .sort(
-        (a, b) =>
-          getLocalDate(a.dateString).getTime() -
-          getLocalDate(b.dateString).getTime(),
-      )[0] ?? null
-  );
-}
-
 export default function EventCalendar() {
   const [currentDate, setCurrentDate] = useState(() => new Date());
   const [sourceEvents, setSourceEvents] = useState<ChurchEvent[]>([]);
@@ -118,30 +96,30 @@ export default function EventCalendar() {
     null,
   );
 
-  const loadEvents = useCallback(async () => {
-    setLoading(true);
+  useEffect(() => {
+    let ignore = false;
 
-    const { data, error } = await supabase
-      .from("events")
-      .select("*")
-      .order("date", { ascending: true });
+    const loadEvents = async () => {
+      const { data, error } = await supabase
+        .from("events")
+        .select("*")
+        .order("date", { ascending: true });
 
-    if (error) {
-      console.error("Supabase error:", error);
-      setSourceEvents([]);
+      if (ignore) return;
+
+      if (error) {
+        console.error("Events loading error:", error);
+        setSourceEvents([]);
+        setLoading(false);
+        return;
+      }
+
+      setSourceEvents((data ?? []) as ChurchEvent[]);
       setLoading(false);
-      return;
-    }
+    };
 
-    setSourceEvents((data ?? []) as ChurchEvent[]);
-    setLoading(false);
-  }, []);
-
-  useEffect(() => {
     void loadEvents();
-  }, [loadEvents]);
 
-  useEffect(() => {
     const channel = supabase
       .channel("events-calendar")
       .on(
@@ -158,9 +136,10 @@ export default function EventCalendar() {
       .subscribe();
 
     return () => {
+      ignore = true;
       void supabase.removeChannel(channel);
     };
-  }, [loadEvents]);
+  }, []);
 
   const events = useMemo(
     () =>
